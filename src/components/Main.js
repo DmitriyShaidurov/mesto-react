@@ -83,17 +83,16 @@ function Main() {
 
           </form>
           <button class="popup__close-button">
-            <img class="popup__close-button-image" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть" />
+            <img class="popup__close-button-image" src={closeIcon} alt="Закрыть" />
           </button>
         </div>
       </div>
 
-      <div class="popup" id="popupEditAvatar" onClick={handleAddPlaceClick}>
+      <div class="popup" id="popupEditAvatar">
         <div class="popup__container">
 
-
-          <h2 class="popup__text">Обновить аватар</h2>
           <form class="popup__form" name="edit" id="popupEditAvatarForm" novalidate>
+            <h2 class="popup__text">Обновить аватар</h2>
             <input type="url" placeholder="Ссылка на аватар" class="popup__input popup__input_type_link"
               id="popupAvatarInputText" name="link" required />
             <span class="popup__span popup__span_type_bottom" id="error-popupAvatarInputText"></span>
@@ -102,7 +101,7 @@ function Main() {
               placeholder="Сохранить" />
           </form>
           <button class="popup__close-button">
-            <img class="popup__close-button-image" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть" />
+            <img class="popup__close-button-image" src={closeIcon} alt="Закрыть" />
           </button>
         </div>
       </div>

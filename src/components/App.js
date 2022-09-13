@@ -1,4 +1,4 @@
-
+import React from 'react';
 import Header from './Header';
 import Main from './Main'
 import Footer from './Footer'
@@ -10,7 +10,7 @@ function App() {
       <Header />
       <Main />
       <Footer />
-      
+
       <div className="popup" id="popupProfile">
         <div class="popup__container" id="popupProfileContainer">
 
@@ -30,8 +30,8 @@ function App() {
         </div>
       </div>
 
-      <div class="popup" id="popupProfileImages">
-        <div class="popup__container">
+      <div class="popup" id="popupProfileImages">{/*  */}
+        <div class="popup__container">{/*  */}
 
           <form class="popup__form" name="edit" novalidate id="popupAddForm">
             <h2 class="popup__text">Новое место</h2>
@@ -70,8 +70,9 @@ function App() {
         <div class="popup__container">
 
 
-          <h2 class="popup__text">Обновить аватар</h2>
+
           <form class="popup__form" name="edit" id="popupEditAvatarForm" novalidate>
+            <h2 class="popup__text">Обновить аватар</h2>
             <input type="url" placeholder="Ссылка на аватар" class="popup__input popup__input_type_link"
               id="popupAvatarInputText" name="link" required />
             <span class="popup__span popup__span_type_bottom" id="error-popupAvatarInputText"></span>
