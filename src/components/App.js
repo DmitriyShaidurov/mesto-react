@@ -6,23 +6,48 @@ import '../App.css';
 import EditAvatarPopup from './EditAvatarPopup';
 import { useState } from 'react';
 import closeIcon from '../images/CloseIcon.svg'
+import EditProfilePopup from './EditProfilePopup';
+import PopupProfileImages from './PopupProfileImages';
+/* import ImagePopup from './ImagePopup'; */
 
 function App() {
 
   const [isEditAvatarPopupOpen, setEditAvatarPopup] = useState(false)
+  const [isEditProfilePopupOpen, setEditProfilePopup] = useState(false)
+  const [isEditProfileImagesPopupOpen, setEditProfileImagesPopup] = useState(false)
+  const closeAllPopups = () => {
+    setEditAvatarPopup(false);
+    setEditProfilePopup(false);
+    setEditProfileImagesPopup(false)
+  }
 
   function handleEditAvatarClick() {
     setEditAvatarPopup(!isEditAvatarPopupOpen)
+  }
+
+  function handleEditProfileClick() {
+    setEditProfilePopup(!isEditProfilePopupOpen)
+  }
+
+  function handleEditProfileImagesClick() {
+    setEditProfileImagesPopup(!isEditProfileImagesPopupOpen)
   }
 
   return (
 
     <div className="page">
       <Header />
-      <Main onEditAvatar={handleEditAvatarClick}/>
+      <Main onEditAvatar={handleEditAvatarClick} 
+      onEditProfile={handleEditProfileClick}
+      onEditProfileImages={handleEditProfileImagesClick}
+      />
       <Footer />
 
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} />
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+      <PopupProfileImages isOpen={isEditProfileImagesPopupOpen} onClose={closeAllPopups} />
+      {/* <ImagePopup isOpen={isImagesPopupOpen} onClose={closeAllPopups} /> */}
+
 
       <div className="popup" id="popupProfile">
         <div class="popup__container" id="popupProfileContainer">
