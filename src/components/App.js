@@ -3,13 +3,26 @@ import Header from './Header';
 import Main from './Main'
 import Footer from './Footer'
 import '../App.css';
+import EditAvatarPopup from './EditAvatarPopup';
+import { useState } from 'react';
+import closeIcon from '../images/CloseIcon.svg'
 
 function App() {
+
+  const [isEditAvatarPopupOpen, setEditAvatarPopup] = useState(false)
+
+  function handleEditAvatarClick() {
+    setEditAvatarPopup(!isEditAvatarPopupOpen)
+  }
+
   return (
+
     <div className="page">
       <Header />
-      <Main />
+      <Main onEditAvatar={handleEditAvatarClick}/>
       <Footer />
+
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} />
 
       <div className="popup" id="popupProfile">
         <div class="popup__container" id="popupProfileContainer">
@@ -25,13 +38,13 @@ function App() {
             <input type="submit" class="popup__button" value="Сохранить" name="submit" placeholder="Сохранить" disabled />
           </form>
           <button class="popup__close-button" id="popupProfileCloseButton">
-            <img class="popup__close-button-image" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть" />
+            <img class="popup__close-button-image" src={closeIcon} alt="Закрыть" />
           </button>
         </div>
       </div>
 
-      <div class="popup" id="popupProfileImages">{/*  */}
-        <div class="popup__container">{/*  */}
+      <div class="popup" id="popupProfileImages">
+        <div class="popup__container">
 
           <form class="popup__form" name="edit" novalidate id="popupAddForm">
             <h2 class="popup__text">Новое место</h2>
@@ -46,7 +59,7 @@ function App() {
 
           </form>
           <button class="popup__close-button">
-            <img class="popup__close-button-image" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть" />
+            <img class="popup__close-button-image" src={closeIcon} alt="Закрыть" />
           </button>
         </div>
       </div>
@@ -61,12 +74,12 @@ function App() {
               placeholder="Создать">Да</button>
           </form>
           <button class="popup__close-button">
-            <img class="popup__close-button-image" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть" />
+            <img class="popup__close-button-image" src={closeIcon} alt="Закрыть" />
           </button>
         </div>
       </div>
 
-      <div class="popup" id="popupEditAvatar">
+      {/* <div class="popup" id="popupEditAvatar">
         <div class="popup__container">
 
 
@@ -81,17 +94,17 @@ function App() {
               placeholder="Сохранить" />
           </form>
           <button class="popup__close-button">
-            <img class="popup__close-button-image" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть" />
+            <img class="popup__close-button-image" src={closeIcon} alt="Закрыть" />
           </button>
         </div>
-      </div>
+      </div> */}
 
       <div class="popup" id="popupImages">
         <div class="popup__container-image" id="popupImagesContainer">
           <img src="#" alt="#" class="popup__image" id="popupImagesImage" />
           <p class="popup__text-image" id="popupImagesText"></p>
           <button class="popup__button-image">
-            <img class="popup__close-button-image" src="<%=require('./images/CloseIcon.svg')%>" alt="Закрыть"
+            <img class="popup__close-button-image" src={closeIcon} alt="Закрыть"
               id="popupCloseButtonImage" />
           </button>
         </div>

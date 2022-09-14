@@ -1,7 +1,7 @@
 import closeIcon from '../images/CloseIcon.svg'
 
 function PopupWithForm(props) {
-    const popupOpened = '';
+    let popupOpened = '';
     if (props.isOpen) {
         popupOpened = 'popup_opened'
     }
@@ -9,7 +9,7 @@ function PopupWithForm(props) {
         popupOpened = ''
     }
 
-
+    return (
     <div className={`popup ${popupOpened}`} id={props.id}>
         <div class="popup__container" id="popupProfileContainer">
 
@@ -26,5 +26,7 @@ function PopupWithForm(props) {
 
 
         </div>
-    </div>
+    </div>)
 }
+
+export default PopupWithForm
