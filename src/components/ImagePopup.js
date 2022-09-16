@@ -1,11 +1,19 @@
-/* function ImagePopup() {
+import React from "react"
+
+
+
+
+
+
+
+function ImagePopup() {
     return(
-        <div class="popup" id="popupImages">
-        <div class="popup__container-image" id="popupImagesContainer">
-          <img src="#" alt="#" class="popup__image" id="popupImagesImage" />
-          <p class="popup__text-image" id="popupImagesText"></p>
-          <button class="popup__button-image">
-            <img class="popup__close-button-image" src="" alt="Закрыть"
+        <div className="popup" id="popupImages">
+        <div className="popup__container-image" id="popupImagesContainer">
+          <img /* src={card.link} */ /* alt={card.name} */ className="popup__image" id="popupImagesImage" />
+          <p className="popup__text-image" id="popupImagesText">{/* {card.name} */}</p>
+          <button className="popup__button-image" /* onClosePopup={props.onClose} */>
+            <img className="popup__close-button-image" src="" alt="Закрыть"
               id="popupCloseButtonImage" />
           </button>
         </div>
@@ -14,4 +22,4 @@
     )
 }
 
-export default ImagePopup */
+export default ImagePopup

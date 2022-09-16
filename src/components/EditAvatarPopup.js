@@ -1,6 +1,8 @@
 import PopupWithForm from "./PopupWithForm";
 
+
 export default function EditAvatarPopup(props) {
+    
 return (
     <PopupWithForm buttonText='Сохранить' name='submit' title='Обновить аватар' idForm='popupEditAvatarForm' id='popupEditAvatar' isOpen={props.isOpen} onClosePopup={props.onClose}>
         <>

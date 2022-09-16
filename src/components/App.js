@@ -1,14 +1,16 @@
-import React from 'react';
+/* import React, { useEffect } from 'react'; */
 import Header from './Header';
 import Main from './Main'
 import Footer from './Footer'
 import '../App.css';
 import EditAvatarPopup from './EditAvatarPopup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import closeIcon from '../images/CloseIcon.svg'
 import EditProfilePopup from './EditProfilePopup';
 import PopupProfileImages from './PopupProfileImages';
-/* import ImagePopup from './ImagePopup'; */
+import api from '../utils/Api';
+import ImagePopup from './ImagePopup';
+
 
 function App() {
 
@@ -18,8 +20,72 @@ function App() {
   const closeAllPopups = () => {
     setEditAvatarPopup(false);
     setEditProfilePopup(false);
-    setEditProfileImagesPopup(false)
+    setEditProfileImagesPopup(false);
+    setImagePopup(false)
   }
+
+  const [userAvatar, setUserAvatar] = useState({})
+  const [userInfo, setUserInfo] = useState({})
+  const [userDescription, setUserDescription] = useState({})
+  const [cards, setCards] = useState([])
+  const [ImagePopup, setImagePopup] = useState(false)
+
+  api.getCards()
+    .then(res => {
+      const card = res.map((cardData) => {
+        return {
+          likes: cardData.likes.length,
+          link: cardData.link,
+          name: cardData.name
+        }
+      })
+      console.log('card', card)
+      /* setCards(card) */
+    })
+
+
+  /*  useEffect(() => {
+     api.getCards()
+     .then(res => {
+       setCards(res)
+     })
+     .catch(err => {
+       console.log('error', err)
+     })
+   }) */
+
+  /* console.log(userInfo) */
+
+  /* useEffect(() => {
+    api.getProfile()
+    .then(res => {
+      setUserAvatar(res)
+    })
+    .catch(err => {
+      console.log('error', err)
+    })
+  }) */
+
+  /*  useEffect(() => {
+      api.getProfile()
+      .then(res => {
+        setUserInfo(res)
+      })
+      .catch(err => {
+        console.log('error', err)
+      })
+    }) */
+
+  /*  useEffect(() => {
+    api.getDescription()
+    .then(res => {
+      setUserInfo(res)
+    })
+    .catch(err => {
+      console.log('error', err)
+    })
+  }) */
+
 
   function handleEditAvatarClick() {
     setEditAvatarPopup(!isEditAvatarPopupOpen)
@@ -33,20 +99,27 @@ function App() {
     setEditProfileImagesPopup(!isEditProfileImagesPopupOpen)
   }
 
+  function handleCardClick() {
+    setImagePopup(!ImagePopup)
+  }
+
+
+
   return (
 
     <div className="page">
       <Header />
-      <Main onEditAvatar={handleEditAvatarClick} 
-      onEditProfile={handleEditProfileClick}
-      onEditProfileImages={handleEditProfileImagesClick}
+      <Main onEditAvatar={handleEditAvatarClick}
+        onEditProfile={handleEditProfileClick}
+        onEditProfileImages={handleEditProfileImagesClick}
+        cards={cards}
       />
       <Footer />
 
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
       <PopupProfileImages isOpen={isEditProfileImagesPopupOpen} onClose={closeAllPopups} />
-      {/* <ImagePopup isOpen={isImagesPopupOpen} onClose={closeAllPopups} /> */}
+      {/* <ImagePopup /> */}
 
 
       <div className="popup" id="popupProfile">

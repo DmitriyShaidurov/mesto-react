@@ -1,5 +1,6 @@
 import profileIntro from '../images/profile-intro.svg';
 import addButton from '../images/addbutton.svg'
+import App from './App';
 
 
 function Main(props) {
@@ -9,18 +10,20 @@ function Main(props) {
     popupEditAvatar.classList.add('popup_opened')
   } */
 
+
+
   return (
     <main className="content">
       <section className='profile'>
         <button type="button" className="profile__Ava-btn" onClick={props.onEditAvatar}>
-          <img src="#" alt="Аватар" className="profile__logo" />
+          <img /* src={props.userAvatar} */ alt="Аватар" className="profile__logo" />//
         </button>
 
 
         <div class="profile__intro">
           <div class="profile__content">
             <div class="profile__title-wrapper">
-              <h1 class="profile__title">
+              <h1 class="profile__title">{/* {userInfo.name} */}123
               </h1>
               <button class="profile__edit-button" id="profileEditButton" type="button" onClick={props.onEditProfile}>
                 <img src={profileIntro} class="profile__edit-button-image" alt="Редактировать" />
@@ -39,9 +42,9 @@ function Main(props) {
 
 
       </section>
-
+        
       <section class="elements">
-
+          
       </section>
 
 
