@@ -11,10 +11,8 @@ export default function Card(props) {
       <h2 className="elements__place">{props.card.name}</h2>
       <button className="elements__deleteButton" type="button"></button>
       <div className="elements__buttonObject">
-        <button className="elements__button " type="button" id="popupAddImagesButton">
-          {props.card.likes}
-        </button>
-        <span className="elements__likes"></span>
+        <button className="elements__button " type="button" id="popupAddImagesButton"></button>
+        <span className="elements__likes">{props.card.likes}</span>
       </div>
     </div>
   );
