@@ -15,18 +15,17 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopup] = useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopup] = useState(false);
   const [isEditProfileImagesPopupOpen, setEditProfileImagesPopup] = useState(false);
+  const [userAvatar, setUserAvatar] = useState("");
+  const [userInfo, setUserInfo] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [cards, setCards] = useState([]);
+  const [selectedCard, setSelectedCard] = useState(null);
   const closeAllPopups = () => {
     setEditAvatarPopup(false);
     setEditProfilePopup(false);
     setEditProfileImagesPopup(false);
     setSelectedCard();
   };
-
-  const [userAvatar, setUserAvatar] = useState();
-  const [userInfo, setUserInfo] = useState();
-  const [userDescription, setUserDescription] = useState();
-  const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState();
 
   useEffect(() => {
     api
@@ -94,7 +93,7 @@ function App() {
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
       <PopupProfileImages isOpen={isEditProfileImagesPopupOpen} onClose={closeAllPopups} />
-      {selectedCard && <ImagePopup card={selectedCard} onClose={closeAllPopups} />}
+      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
   );
 }
