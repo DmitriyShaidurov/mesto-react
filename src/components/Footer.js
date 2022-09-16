@@ -1,10 +1,9 @@
-
 function Footer() {
-    return (
-        <footer class="footer">
-            <p class="footer__author">© 2022 Mesto Russia</p>
-        </footer>
-    )
+  return (
+    <footer className="footer">
+      <p className="footer__author">© 2022 Mesto Russia</p>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

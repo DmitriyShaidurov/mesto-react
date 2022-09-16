@@ -1,58 +1,54 @@
-import profileIntro from '../images/profile-intro.svg';
-import addButton from '../images/addbutton.svg'
-import App from './App';
-
+import profileIntro from "../images/profile-intro.svg";
+import addButton from "../images/addbutton.svg";
+import App from "./App";
+import Card from "./Card";
 
 function Main(props) {
-
   /* const handleEditAvatarClick = () => {
     const popupEditAvatar = document.querySelector('#popupEditAvatar')
     popupEditAvatar.classList.add('popup_opened')
   } */
-
-
-
   return (
     <main className="content">
-      <section className='profile'>
+      <section className="profile">
         <button type="button" className="profile__Ava-btn" onClick={props.onEditAvatar}>
-          <img /* src={props.userAvatar} */ alt="Аватар" className="profile__logo" />//
+          <img src={props.userAvatar} alt="Аватар" className="profile__logo" />
         </button>
 
-
-        <div class="profile__intro">
-          <div class="profile__content">
-            <div class="profile__title-wrapper">
-              <h1 class="profile__title">{/* {userInfo.name} */}123
-              </h1>
-              <button class="profile__edit-button" id="profileEditButton" type="button" onClick={props.onEditProfile}>
-                <img src={profileIntro} class="profile__edit-button-image" alt="Редактировать" />
+        <div className="profile__intro">
+          <div className="profile__content">
+            <div className="profile__title-wrapper">
+              <h1 className="profile__title">{props.userInfo}</h1>
+              <button
+                className="profile__edit-button"
+                id="profileEditButton"
+                type="button"
+                onClick={props.onEditProfile}
+              >
+                <img src={profileIntro} className="profile__edit-button-image" alt="Редактировать" />
               </button>
             </div>
-            <p class="profile__text">
-            </p>
+            <p className="profile__text">{props.userDescription}</p>
           </div>
 
-
-          <button class="profile__add-button" type="button" id="profileImagesAddButton" onClick={props.onEditProfileImages}>
-            <img class="profile__add-button-image" src={addButton} alt="Добавить" />
+          <button
+            className="profile__add-button"
+            type="button"
+            id="profileImagesAddButton"
+            onClick={props.onEditProfileImages}
+          >
+            <img className="profile__add-button-image" src={addButton} alt="Добавить" />
           </button>
         </div>
-
-
-
-      </section>
-        
-      <section class="elements">
-          
       </section>
 
-
-
-
-    </main>)
+      <section className="elements">
+        {props.cards.map((card) => (
+          <Card key={card._id} card={card} />
+        ))}
+      </section>
+    </main>
+  );
 }
 
-
-export default Main
-
+export default Main;
