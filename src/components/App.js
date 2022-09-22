@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import "../App.css";
 import EditAvatarPopup from "./EditAvatarPopup";
 import { useEffect, useState } from "react";
-import closeIcon from "../images/CloseIcon.svg";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import PopupProfileImages from "./PopupProfileImages";
 import api from "../utils/Api";
@@ -15,17 +15,30 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarPopup] = useState(false);
   const [isEditProfilePopupOpen, setEditProfilePopup] = useState(false);
   const [isEditProfileImagesPopupOpen, setEditProfileImagesPopup] = useState(false);
-  const [userAvatar, setUserAvatar] = useState("");
+  /* const [userAvatar, setUserAvatar] = useState("");
   const [userInfo, setUserInfo] = useState("");
-  const [userDescription, setUserDescription] = useState("");
+  const [userDescription, setUserDescription] = useState(""); */
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [currentUser, setCurrentUser] = useState("");
   const closeAllPopups = () => {
     setEditAvatarPopup(false);
     setEditProfilePopup(false);
     setEditProfileImagesPopup(false);
     setSelectedCard();
   };
+
+  useEffect(() => {
+    api
+      .getProfile()
+      .then((res) => {
+        setCurrentUser(res);
+        /* console.log(res); */
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  }, []);
 
   useEffect(() => {
     api
@@ -39,14 +52,15 @@ function App() {
             _id: cardData._id,
           };
         });
-        setCards(cards);
+        setCards(cards /* res  */);
+        /* console.log(res); */
       })
       .catch((err) => {
         console.log("error", err);
       });
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     api
       .getProfile()
       .then((res) => {
@@ -57,7 +71,7 @@ function App() {
       .catch((err) => {
         console.log("error", err);
       });
-  }, []);
+  }, []); */
 
   function handleEditAvatarClick() {
     setEditAvatarPopup(!isEditAvatarPopupOpen);
@@ -77,23 +91,22 @@ function App() {
 
   return (
     <div className="page">
-      <Header />
-      <Main
-        onEditAvatar={handleEditAvatarClick}
-        onEditProfile={handleEditProfileClick}
-        onEditProfileImages={handleEditProfileImagesClick}
-        cards={cards}
-        userAvatar={userAvatar}
-        userDescription={userDescription}
-        userInfo={userInfo}
-        onCardClick={handleCardClick}
-      />
-      <Footer />
+      <CurrentUserContext.Provider value={currentUser}>
+        <Header />
+        <Main
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onEditProfileImages={handleEditProfileImagesClick}
+          cards={cards}
+          onCardClick={handleCardClick}
+        />
+        <Footer />
 
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
-      <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
-      <PopupProfileImages isOpen={isEditProfileImagesPopupOpen} onClose={closeAllPopups} />
-      <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+        <PopupProfileImages isOpen={isEditProfileImagesPopupOpen} onClose={closeAllPopups} />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      </CurrentUserContext.Provider>
     </div>
   );
 }

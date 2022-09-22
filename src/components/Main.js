@@ -2,23 +2,22 @@ import profileIntro from "../images/profile-intro.svg";
 import addButton from "../images/addbutton.svg";
 import App from "./App";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 function Main(props) {
-  /* const handleEditAvatarClick = () => {
-    const popupEditAvatar = document.querySelector('#popupEditAvatar')
-    popupEditAvatar.classList.add('popup_opened')
-  } */
+  const currentUser = useContext(CurrentUserContext);
   return (
     <main className="content">
       <section className="profile">
         <button type="button" className="profile__Ava-btn" onClick={props.onEditAvatar}>
-          <img src={props.userAvatar} alt="Аватар" className="profile__logo" />
+          <img src={currentUser.avatar} alt="Аватар" className="profile__logo" />
         </button>
 
         <div className="profile__intro">
           <div className="profile__content">
             <div className="profile__title-wrapper">
-              <h1 className="profile__title">{props.userInfo}</h1>
+              <h1 className="profile__title">{currentUser.name}</h1>
               <button
                 className="profile__edit-button"
                 id="profileEditButton"
@@ -28,7 +27,7 @@ function Main(props) {
                 <img src={profileIntro} className="profile__edit-button-image" alt="Редактировать" />
               </button>
             </div>
-            <p className="profile__text">{props.userDescription}</p>
+            <p className="profile__text">{currentUser.about}</p>
           </div>
 
           <button
