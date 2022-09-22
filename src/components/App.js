@@ -20,7 +20,7 @@ function App() {
   const [userDescription, setUserDescription] = useState(""); */
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [currentUser, setCurrentUser] = useState("");
+  const [currentUser, setCurrentUser] = useState({});
   const closeAllPopups = () => {
     setEditAvatarPopup(false);
     setEditProfilePopup(false);
@@ -40,7 +40,7 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
+  /*  useEffect(() => {
     api
       .getCards()
       .then((res) => {
@@ -52,8 +52,27 @@ function App() {
             _id: cardData._id,
           };
         });
-        setCards(cards /* res  */);
-        /* console.log(res); */
+        setCards(res  cards);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log("error", err);
+      });
+  }, []); */
+
+  useEffect(() => {
+    api
+      .getCards()
+      .then((res) => {
+        /* const cards = res.map((cardData) => {
+          return {
+            likes: cardData.likes.length,
+            link: cardData.link,
+            name: cardData.name,
+            _id: cardData._id,
+          };
+        }); */
+        setCards(res);
       })
       .catch((err) => {
         console.log("error", err);
