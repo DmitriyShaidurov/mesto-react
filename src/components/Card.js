@@ -12,13 +12,26 @@ export default function Card(props) {
     props.onCardClick(props.card);
   }
 
+  function handleLikeClick() {
+    props.onCardLike(props.card);
+  }
+
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
   return (
     <div className="elements__element">
       <img src={props.card.link} className="elements__mask-group" alt={props.card.name} onClick={handleClick} />
       <h2 className="elements__place">{props.card.name}</h2>
-      <button className={cardDeleteButtonClassName} type="button"></button>
+      <button className={cardDeleteButtonClassName} onClick={handleDeleteClick} type="button"></button>
       <div className="elements__buttonObject">
-        <button className={cardLikeButtonClassName} type="button" id="popupAddImagesButton"></button>
+        <button
+          className={cardLikeButtonClassName}
+          type="button"
+          id="popupAddImagesButton"
+          onClick={handleLikeClick}
+        ></button>
         <span className="elements__likes">{props.card.likes.length}</span>
       </div>
     </div>

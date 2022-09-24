@@ -11,7 +11,7 @@ function PopupWithForm(props) {
   return (
     <div className={`popup ${popupOpened}`} id={props.id}>
       <div className="popup__container" id="popupProfileContainer">
-        <form className="popup__form" name="edit" noValidate id={props.idForm}>
+        <form className="popup__form" name="edit" noValidate id={props.idForm} onSubmit={props.onSubmit}>
           <h2 className="popup__text">{props.title}</h2>
           {props.children}
 
@@ -21,7 +21,7 @@ function PopupWithForm(props) {
             value={props.buttonText}
             name={props.name}
             placeholder={props.buttonText}
-            disabled
+            /* disabled */
           />
         </form>
 
