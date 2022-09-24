@@ -1,9 +1,9 @@
 import PopupWithForm from "./PopupWithForm";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function PopupProfileImages(props) {
-  const imagePlaceNameRef = useRef("");
-  const placeLinkRef = useRef("");
+  const imagePlaceNameRef = useRef(null);
+  const placeLinkRef = useRef(null);
   function handleSubmit(e) {
     e.preventDefault();
     props.onAddPlace({
@@ -11,6 +11,11 @@ export default function PopupProfileImages(props) {
       link: placeLinkRef.current.value,
     });
   }
+
+  useEffect(() => {
+    imagePlaceNameRef.current.value = "";
+    placeLinkRef.current.value = "";
+  }, [props.isOpen]);
 
   return (
     <PopupWithForm
